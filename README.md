@@ -2,9 +2,21 @@
 The Bookstore is a website similar to the "Awesome Books" website built in the previous module. You will create an MVP version of it that allows the user to: Display a list of books, Add a book, Remove a selected book.
 
 
-# Getting Started with Create React App
+# Built with
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>React</li>
+<li>Webpack</li>
+<li>Jest</li>
+</ul>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Prerequisites
+<ul>
+<li>VSCode</li>
+<li>Git</li>
+<li>Browser With Developer Tools</li>
+</ul>
 
 ## Available Scripts
 
@@ -12,24 +24,19 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Authors  	:bookmark_tabs:
+David Kasilia Mwanzia
+<ul>
+<li>Github <a href="https://github.com/David-Kasilia">Link To Github Profile</a></li>
+<li>Linkedin <a href="https://www.linkedin.com/in/david-kasilia-846241211/">Link To Linkedin Profile</a></li>
+<li>Twitter <a href="https://twitter.com/DavidKasilia">Link To Twitter Profile</a></li>
+</ul>
 
-### `npm test`
+## 📝 License
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project is <a href="https://github.com/David-Kasilia/JavaScript-Capstone-Project/blob/develop/MIT.md">MIT</a></li> licensed.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
+# Contributing :handshake:
+Contributions, issues, and feature request are welcome anytime.
