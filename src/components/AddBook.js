@@ -7,8 +7,8 @@ import { addBook } from '../redux/books/books';
 const AddBook = () => {
   const dispatch = useDispatch();
 
-  const [bookTitle, setBookTitle] = useState('');
-  const [bookAuthor, setBookAuthor] = useState('');
+  const [title, setBookTitle] = useState('');
+  const [author, setBookAuthor] = useState('');
 
   const handleBookTitle = (e) => {
     setBookTitle(e.target.value);
@@ -19,8 +19,8 @@ const AddBook = () => {
   };
 
   const addNewBook = () => {
-    if (bookTitle !== '' && bookAuthor !== '') {
-      dispatch(addBook)({ id: uuidv4(), bookTitle, bookAuthor });
+    if (title !== '' && author !== '') {
+      dispatch(addBook)({ id: uuidv4(), title, author });
       setBookTitle('');
       setBookAuthor('');
     }
@@ -28,8 +28,8 @@ const AddBook = () => {
   return (
     <div>
       <form>
-        <input type="text" placeholder="Book Title" value={bookTitle} onChange={handleBookTitle} />
-        <input type="text" placeholder="Book Author" value={bookAuthor} onChange={handleBookAuthor} />
+        <input type="text" placeholder="Book Title" value={title} onChange={handleBookTitle} />
+        <input type="text" placeholder="Book Author" value={author} onChange={handleBookAuthor} />
         <button type="submit" className="btn" onClick={addNewBook}>Add Book</button>
       </form>
     </div>
