@@ -1,17 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { statusCheck } from '../redux/categories/categories';
 
 const Categories = () => {
-  const checkStatus = useSelector((state) => state.checkStatus);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(statusCheck());
+  }, []);
+
+  const fetchCategories = () => {
+    dispatch(statusCheck());
+  };
   return (
     <div>
-      {checkStatus ? (
-        <button type="button" className="check">
-          Check Status
-        </button>
-      ) : (
-        <h3>Under Construction</h3>
-      )}
+
+      <button type="button" className="check" onClick={fetchCategories}>
+        Check Status
+      </button>
+
     </div>
   );
 };

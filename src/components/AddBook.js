@@ -20,7 +20,7 @@ const AddBook = () => {
 
   const addNewBook = () => {
     if (title !== '' && author !== '') {
-      dispatch(addBook)({ id: uuidv4(), title, author });
+      dispatch(addBook({ id: uuidv4(), title, author }));
       setBookTitle('');
       setBookAuthor('');
     }

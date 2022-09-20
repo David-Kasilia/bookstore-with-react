@@ -19,6 +19,11 @@ export const initialState = [
     title: 'Watch And Learn',
     author: 'Mitch',
   },
+  {
+    id: 4,
+    title: 'Watch And Learn',
+    author: 'Mitch',
+  },
 ];
 
 // Reducer Function
