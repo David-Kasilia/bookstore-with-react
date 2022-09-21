@@ -1,28 +1,27 @@
 // Actions
 const ADD = 'bookStore/books/ADD';
 const REMOVE = 'bookStore/books/REMOVE';
+const FETCH_BOOKS = 'bookStore/books/FETCH_BOOKS';
 
 // Initial State
 export const initialState = [
   {
-    id: 1,
+    item_id: '1',
     title: 'Where We End & Begin',
     author: 'Jane Igharo',
+    category: 'Adventure',
   },
   {
-    id: 2,
+    item_id: '2',
     title: 'Strength In Numbers',
     author: 'Elliot',
+    category: 'Life Story',
   },
   {
-    id: 3,
+    item_id: '3',
     title: 'Watch And Learn',
     author: 'Mitch',
-  },
-  {
-    id: 4,
-    title: 'Watch And Learn',
-    author: 'Mitch',
+    category: 'Motivational',
   },
 ];
 
@@ -35,6 +34,9 @@ const bookReducer = (state = initialState, action) => {
 
     case REMOVE:
       return state.filter((book) => book !== action.bookId);
+
+    case FETCH_BOOKS:
+      return [...state];
 
     default:
       return state;
@@ -53,6 +55,11 @@ export const addBook = (book) => ({
 export const removeBook = (bookId) => ({
   type: 'REMOVE',
   bookId,
+});
+
+// Fetch Books action From BookStore API
+export const fetchBooks = () => ({
+  type: 'FETCH_BOOKS',
 });
 
 export default bookReducer;
