@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-
-import { addBook } from '../redux/books/books';
+import { createNewBook } from '../redux/books/books';
 
 const AddBook = () => {
   const dispatch = useDispatch();
-  const api = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books';
 
   const [title, setBookTitle] = useState('');
   const [author, setBookAuthor] = useState('');
@@ -24,14 +21,13 @@ const AddBook = () => {
     setBookCategory(e.target.value);
   };
 
-  const addBookToList = async () => {
-    const addNewBook = await axios.post(`${api}`, {
+  const addBookToList = () => {
+    dispatch(createNewBook({
       item_id: uuidv4(),
       title,
       author,
       category,
-    });
-    dispatch(addBook(addNewBook.data));
+    })).unwrap();
     window.location.reload();
   };
 

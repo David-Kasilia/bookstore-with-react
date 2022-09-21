@@ -1,3 +1,11 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-expressions */
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const api = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books';
+
 // Actions
 const ADD = 'bookStore/books/ADD';
 const REMOVE = 'bookStore/books/REMOVE';
@@ -25,9 +33,54 @@ export const initialState = [
   },
 ];
 
+export const getBooksList = createAsyncThunk(
+  'books/getBooksList',
+  async () => {
+    try {
+      const response = await axios.get(api);
+      return [...response.data];
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
+
+export const createNewBook = createAsyncThunk(
+  'books/createNewBook',
+  async (initialBook) => {
+    try {
+      const response = await axios.post(api, initialBook);
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
+
+const booksSlice = createSlice({
+  name: 'books',
+  initialState,
+  extraReducers(builder) {
+    builder.addCase(getBooksList.pending, (state) => {
+      state.status = 'Loading';
+    });
+    builder.addCase(getBooksList.fulfilled, (state, action) => {
+      state.status = 'Success';
+      state.books = action.payload;
+    });
+    builder.addCase(getBooksList.rejected, (state, action) => {
+      state.status = 'Failed';
+      state.error = action.error.message;
+    });
+    builder.addCase(createNewBook.fulfilled, (state, action) => {
+      return state.books.push(action.payload);
+    });
+  },
+});
+
 // Reducer Function
 
-const bookReducer = (state = initialState, action) => {
+export const bookReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_BOOKS:
       return [
@@ -35,7 +88,7 @@ const bookReducer = (state = initialState, action) => {
       ];
 
     case ADD:
-      return [...state, action.payload];
+      return [...this.state.first, action.payload];
 
     case REMOVE:
       return state.filter((book) => book.item_id !== action.payload);
@@ -64,4 +117,6 @@ export const removeBook = (index) => ({
   payload: index,
 });
 
-export default bookReducer;
+export const getBookStatus = (state) => state.books.status;
+
+export default booksSlice.reducer;
