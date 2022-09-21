@@ -6,19 +6,19 @@ const FETCH_BOOKS = 'bookStore/books/FETCH_BOOKS';
 // Initial State
 export const initialState = [
   {
-    item_id: '1',
+    item_id: 'item1',
     title: 'Where We End & Begin',
     author: 'Jane Igharo',
     category: 'Adventure',
   },
   {
-    item_id: '2',
+    item_id: 'item2',
     title: 'Strength In Numbers',
     author: 'Elliot',
     category: 'Life Story',
   },
   {
-    item_id: '3',
+    item_id: 'item3',
     title: 'Watch And Learn',
     author: 'Mitch',
     category: 'Motivational',

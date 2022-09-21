@@ -7,6 +7,7 @@ import { addBook } from '../redux/books/books';
 
 const AddBook = () => {
   const dispatch = useDispatch();
+  const api = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books';
 
   const [title, setBookTitle] = useState('');
   const [author, setBookAuthor] = useState('');
@@ -24,13 +25,13 @@ const AddBook = () => {
   };
 
   const addBookToList = async () => {
-    const addNewBook = await axios.post('https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books', {
+    const addNewBook = await axios.post(`${api}`, {
       item_id: uuidv4(),
       title,
       author,
       category,
     });
-    dispatch(addBook(addNewBook));
+    dispatch(addBook(addNewBook.data));
     window.location.reload();
   };
 
@@ -40,7 +41,7 @@ const AddBook = () => {
         <input type="text" placeholder="Add Book Title" value={title} onChange={handleBookTitle} />
         <input type="text" placeholder="Add Book Author" value={author} onChange={handleBookAuthor} />
         <input type="text" placeholder="Add Book Category" value={category} onChange={handleBookCategory} />
-        <button type="submit" className="btn" onClick={addBookToList}>Add Book</button>
+        <button type="button" className="btn" onClick={title !== '' && author !== '' && category !== '' ? addBookToList : () => 'form is empty'}>Add Book</button>
       </form>
     </div>
   );
