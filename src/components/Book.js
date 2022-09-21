@@ -8,7 +8,7 @@ import BookDetail from './BookDetail';
 import { fetchBooks } from '../redux/books/books';
 
 const Book = () => {
-  const bookList = useSelector((state) => state.book);
+  const bookList = useSelector((state) => [...state.book]);
   const dispatch = useDispatch();
   useEffect(() => async () => {
     const booksObj = await axios.get('https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books');
@@ -30,7 +30,7 @@ const Book = () => {
   }, []);
   return (
     <div>
-      {bookList.map((book) => <BookDetail key={book.item_id} id={book.item_id} title={book.title} author={book.author} category={book.category} />)}
+      {bookList.map((book) => (<BookDetail key={book.item_id} id={book.item_id} title={book.title} author={book.author} category={book.category} />))}
       <AddBook />
     </div>
   );

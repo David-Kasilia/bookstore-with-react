@@ -29,37 +29,39 @@ export const initialState = [
 
 const bookReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_BOOKS:
+      return [
+        ...state,
+      ];
+
     case ADD:
-      return [...state, action.book];
+      return [...state, action.payload];
 
     case REMOVE:
-      return state.filter((book) => book !== action.bookId);
-
-    case FETCH_BOOKS:
-      return [...state];
+      return state.filter((book) => book.item_id !== action.payload);
 
     default:
       return state;
   }
 };
 
+// Fetch Books action From BookStore API
+export const fetchBooks = () => ({
+  type: 'FETCH_BOOKS',
+});
+
 // Add A Book action
 
 export const addBook = (book) => ({
   type: 'ADD',
-  book,
+  payload: book,
 });
 
 // Remove a book action
 
-export const removeBook = (bookId) => ({
+export const removeBook = (index) => ({
   type: 'REMOVE',
-  bookId,
-});
-
-// Fetch Books action From BookStore API
-export const fetchBooks = () => ({
-  type: 'FETCH_BOOKS',
+  payload: index,
 });
 
 export default bookReducer;
