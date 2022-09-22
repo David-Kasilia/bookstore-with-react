@@ -1,49 +1,61 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import axios from 'axios';
-import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/books';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { removeBookList } from '../redux/books/books';
 
 const BookDetail = (props) => {
-  const {
-    id, title, author, category,
-  } = props;
-
   const dispatch = useDispatch();
 
-  const handleRemove = async () => {
-    await axios.delete(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books/${id}`);
-    dispatch(removeBook(id));
+  const handleRemove = () => {
+    dispatch(removeBookList(props.id));
   };
-
+  const percentage = 66;
   return (
-    <div>
-      <p>
-        Book Title:
-        {title}
+    <div className="bookContainer">
+      <p className="category">
+        {props.category}
       </p>
-      <p>
-        Author:
-        {author}
+      <p className="bookTitle">
+        {props.title}
       </p>
-      <p>
-        Category:
-        {category}
+      <p className="author">
+        {props.author}
       </p>
-      <button type="button" className="removeBtn" onClick={handleRemove}>
-        Remove
-      </button>
+      <div className="items">
+        <p className="price">
+          Comments
+        </p>
+        <p className="hr"> | </p>
+        <button type="button" className="removeBtn" onClick={handleRemove}>
+          Remove
+        </button>
+        <p className="hr"> | </p>
+        <p className="price">
+          Edit
+        </p>
+      </div>
+      <div style={{ width: 100, height: 100 }}>
+        <CircularProgressbar
+          value={percentage}
+          styles={{
+            path: {
+              stroke: '#379cf6',
+              strokeLinecap: 'butt',
+            },
+          }}
+        />
+      </div>
+      <div className="vl" />
+      <button type="button" className="update">UPDATE PROGRESS</button>
+      <h2 className="percentage">64%</h2>
+      <h3 className="complete">Completed</h3>
+      <h2 className="chapter2">Chapter 1: In The Begining</h2>
+      <h3 className="chapter">CURRENT CHAPTER</h3>
     </div>
   );
-};
-
-BookDetail.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
 };
 
 export default BookDetail;

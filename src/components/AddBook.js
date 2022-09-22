@@ -1,6 +1,7 @@
+/* eslint-disable consistent-return */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-uuid';
 import { createNewBook } from '../redux/books/books';
 
 const AddBook = () => {
@@ -21,20 +22,20 @@ const AddBook = () => {
     setBookCategory(e.target.value);
   };
 
-  const addBookToList = () => {
-    dispatch(createNewBook({
-      item_id: uuidv4(),
-      title,
-      author,
-      category,
-    })).unwrap();
+  const addBookToList = (e) => {
+    e.preventDefault();
+    const book = {
+      item_id: uuid(), title, author, category,
+    };
+    dispatch(createNewBook(book));
     setBookTitle('');
     setBookAuthor('');
     setBookCategory('');
   };
 
   return (
-    <div>
+    <div className="bookForm">
+      <h3 className="addBook">ADD BOOK</h3>
       <form>
         <input type="text" placeholder="Add Book Title" value={title} onChange={handleBookTitle} />
         <input type="text" placeholder="Add Book Author" value={author} onChange={handleBookAuthor} />

@@ -1,3 +1,305 @@
+/* stylelint-disable csstree/validator */
 body {
   margin: 0;
+  background-color: gainsboro;
+  overflow-x: hidden;
+}
+
+#root {
+  margin: 3rem 2rem 2rem 1rem;
+  border-radius: 4px;
+  border-style: solid;
+  border-color: #fff;
+  box-shadow: 0 0 60px 0 var(--black-5);
+  background-color: #fafafa;
+}
+
+a {
+  text-decoration: none;
+  color: #121212;
+}
+
+header {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  padding: 1.438rem 6.188rem 1.688rem 6.25rem;
+  background-color: #fff;
+  border-radius: 4px;
+  border-style: solid;
+  border-color: #fff;
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 5rem;
+  list-style: none;
+  text-decoration: none;
+  margin-top: 10%;
+}
+
+.bookContainer {
+  width: 80%;
+  height: 10.625rem;
+  margin: 2.313rem 0 2.25rem 3.5rem;
+  padding: 2rem 9.188rem 1.625rem 1.688rem;
+  border-radius: 4px;
+  border: solid 1px #e8e8e8;
+  background-color: #fff;
+}
+
+input {
+  width: 20rem;
+  height: 2.813rem;
+  margin-bottom: 3rem;
+  border-radius: 4px;
+  border: solid 1px #e8e8e8;
+  background-color: #fff;
+}
+
+.btn {
+  width: 11.5rem;
+  height: 2.813rem;
+  border-color: #0290ff;
+  padding: 0.801rem 1.188rem 0.886rem 1.375rem;
+  border-radius: 3px;
+  background-color: #0290ff;
+}
+
+.user {
+  width: 2.813rem;
+  height: 2.813rem;
+  margin: 1.1rem 0 0 41.5rem;
+  padding: 0.875rem;
+  border: solid 50% #e8e8e8;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.875rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #0290ff;
+  width: 15rem;
+  height: 2.313rem;
+  margin: 1.375rem 2.938rem 0.125rem 0;
+}
+
+.nav-item {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.813rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1.9px;
+  color: #121212;
+}
+
+.CircularProgressbar {
+  margin: -15rem 0 10% 35rem;
+}
+
+.items {
+  display: inline-flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  font-family: 'Roboto Slab', serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4386bf;
+  gap: 1.5rem;
+}
+
+.removeBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto Slab', serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4386bf;
+}
+
+.userIcon {
+  color: #0290ff;
+  font-size: 24px;
+  margin-top: -0.5rem;
+  margin-left: -0.35rem;
+  text-align: center;
+}
+
+.author {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4386bf;
+}
+
+.bookTitle {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.375rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  color: #121212;
+}
+
+.category {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.875rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #121212;
+}
+
+.update {
+  width: 15.5rem;
+  height: 2.063rem;
+  position: relative;
+  top: -17.5rem;
+  bottom: 0;
+  left: 60rem;
+  margin: auto;
+  padding: 0.438rem 1.188rem 0.5rem 1.175rem;
+  border-radius: 3px;
+  background-color: #0290ff;
+  font-family: 'Roboto Slab', serif;
+  font-size: 0.875rem;
+  color: #fff;
+  border: #0290ff;
+}
+
+.vl {
+  width: 0.025rem;
+  height: 5.375rem;
+  border: solid 1px gray;
+  position: relative;
+  top: -17rem;
+  right: 0;
+  left: 55rem;
+  bottom: 0;
+}
+
+.chapter {
+  position: relative;
+  top: -37.5rem;
+  right: 0;
+  left: 60rem;
+  bottom: 0;
+  font-family: 'Roboto Slab', serif;
+  font-size: 0.913rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: gray;
+}
+
+.chapter2 {
+  position: relative;
+  top: -32.5rem;
+  right: 0;
+  left: 60rem;
+  bottom: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.113rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #121212;
+}
+
+.complete {
+  position: relative;
+  top: -27rem;
+  right: 0;
+  left: 45rem;
+  bottom: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.175rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: gray;
+}
+
+.percentage {
+  position: relative;
+  top: -26rem;
+  right: 0;
+  left: 45rem;
+  bottom: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.275rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: black;
+}
+
+.addBook {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.18px;
+  color: gray;
+  margin-left: 6.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  margin-left: 6.5rem;
+  gap: 2.5rem;
+}
+
+hr {
+  margin-top: 2rem;
+  margin-left: 6.5rem;
+  width: 90%;
+  color: gray;
+}
+
+.check {
+  width: 11.5rem;
+  margin-left: 35rem;
+  height: 2.813rem;
+  border-color: #0290ff;
+  padding: 0.801rem 1.188rem 0.886rem 1.375rem;
+  border-radius: 3px;
+  background-color: #0290ff;
 }
