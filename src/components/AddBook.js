@@ -28,7 +28,9 @@ const AddBook = () => {
       author,
       category,
     })).unwrap();
-    window.location.reload();
+    setBookTitle('');
+    setBookAuthor('');
+    setBookCategory('');
   };
 
   return (

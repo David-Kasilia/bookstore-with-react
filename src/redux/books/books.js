@@ -73,7 +73,7 @@ const booksSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(createNewBook.fulfilled, (state, action) => {
-      return state.books.push(action.payload);
+      state.books.push(action.payload);
     });
   },
 });
