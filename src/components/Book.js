@@ -23,7 +23,7 @@ const Book = () => {
 
   let content;
   if (bookStatus === 'Loading') {
-    content = <p>Loading...</p>;
+    content = <p className="loading">Loading...</p>;
   } else if (bookStatus === 'Success') {
     content = Object.keys(bookList).map((book) => (<BookDetail key={uuid()} books={book} />));
   } else if (bookStatus === 'Failed') {
