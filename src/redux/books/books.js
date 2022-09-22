@@ -1,58 +1,122 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-expressions */
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const api = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books';
+
 // Actions
 const ADD = 'bookStore/books/ADD';
 const REMOVE = 'bookStore/books/REMOVE';
+const FETCH_BOOKS = 'bookStore/books/FETCH_BOOKS';
 
 // Initial State
 export const initialState = [
   {
-    id: 1,
+    item_id: 'item1',
     title: 'Where We End & Begin',
     author: 'Jane Igharo',
+    category: 'Adventure',
   },
   {
-    id: 2,
+    item_id: 'item2',
     title: 'Strength In Numbers',
     author: 'Elliot',
+    category: 'Life Story',
   },
   {
-    id: 3,
+    item_id: 'item3',
     title: 'Watch And Learn',
     author: 'Mitch',
-  },
-  {
-    id: 4,
-    title: 'Watch And Learn',
-    author: 'Mitch',
+    category: 'Motivational',
   },
 ];
 
+export const getBooksList = createAsyncThunk(
+  'books/getBooksList',
+  async () => {
+    try {
+      const response = await axios.get(api);
+      return [...response.data];
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
+
+export const createNewBook = createAsyncThunk(
+  'books/createNewBook',
+  async (initialBook) => {
+    try {
+      const response = await axios.post(api, initialBook);
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
+
+const booksSlice = createSlice({
+  name: 'books',
+  initialState,
+  extraReducers(builder) {
+    builder.addCase(getBooksList.pending, (state) => {
+      state.status = 'Loading';
+    });
+    builder.addCase(getBooksList.fulfilled, (state, action) => {
+      state.status = 'Success';
+      state.books = action.payload;
+    });
+    builder.addCase(getBooksList.rejected, (state, action) => {
+      state.status = 'Failed';
+      state.error = action.error.message;
+    });
+    builder.addCase(createNewBook.fulfilled, (state, action) => {
+      state.books.push(action.payload);
+    });
+  },
+});
+
 // Reducer Function
 
-const bookReducer = (state = initialState, action) => {
+export const bookReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_BOOKS:
+      return [
+        ...state,
+      ];
+
     case ADD:
-      return [...state, action.book];
+      return [...this.state.first, action.payload];
 
     case REMOVE:
-      return state.filter((book) => book !== action.bookId);
+      return state.filter((book) => book.item_id !== action.payload);
 
     default:
       return state;
   }
 };
 
+// Fetch Books action From BookStore API
+export const fetchBooks = () => ({
+  type: 'FETCH_BOOKS',
+});
+
 // Add A Book action
 
 export const addBook = (book) => ({
   type: 'ADD',
-  book,
+  payload: book,
 });
 
 // Remove a book action
 
-export const removeBook = (bookId) => ({
+export const removeBook = (index) => ({
   type: 'REMOVE',
-  bookId,
+  payload: index,
 });
 
-export default bookReducer;
+export const getBookStatus = (state) => state.books.status;
+
+export default booksSlice.reducer;
