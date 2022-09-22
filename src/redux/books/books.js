@@ -12,26 +12,11 @@ const REMOVE = 'bookStore/books/REMOVE';
 const FETCH_BOOKS = 'bookStore/books/FETCH_BOOKS';
 
 // Initial State
-export const initialState = [
-  {
-    item_id: 'item1',
-    title: 'Where We End & Begin',
-    author: 'Jane Igharo',
-    category: 'Adventure',
-  },
-  {
-    item_id: 'item2',
-    title: 'Strength In Numbers',
-    author: 'Elliot',
-    category: 'Life Story',
-  },
-  {
-    item_id: 'item3',
-    title: 'Watch And Learn',
-    author: 'Mitch',
-    category: 'Motivational',
-  },
-];
+export const initialState = {
+  books: [],
+  status: 'idle',
+  error: null,
+};
 
 export const getBooksList = createAsyncThunk(
   'books/getBooksList',
@@ -118,5 +103,6 @@ export const removeBook = (index) => ({
 });
 
 export const getBookStatus = (state) => state.books.status;
+export const getBookError = (state) => state.books.error;
 
 export default booksSlice.reducer;

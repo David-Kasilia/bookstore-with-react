@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,6 +10,7 @@ const AddBook = () => {
   const [title, setBookTitle] = useState('');
   const [author, setBookAuthor] = useState('');
   const [category, setBookCategory] = useState('');
+  const [addBookStatus, setAddBookStatus] = useState('idle');
 
   const handleBookTitle = (e) => {
     setBookTitle(e.target.value);
@@ -21,16 +23,24 @@ const AddBook = () => {
     setBookCategory(e.target.value);
   };
 
+  const canAdd = [title, author, category].every(Boolean) && addBookStatus === 'idle';
+
   const addBookToList = () => {
-    dispatch(createNewBook({
-      item_id: uuidv4(),
-      title,
-      author,
-      category,
-    })).unwrap();
-    setBookTitle('');
-    setBookAuthor('');
-    setBookCategory('');
+    if (canAdd) {
+      try {
+        setAddBookStatus('pending');
+        dispatch(createNewBook({
+          item_id: uuidv4(), title, author, category,
+        })).unwrap();
+        setBookTitle('');
+        setBookAuthor('');
+        setBookCategory('');
+      } catch (error) {
+        return error.message;
+      } finally {
+        setAddBookStatus('idle');
+      }
+    }
   };
 
   return (
