@@ -19,7 +19,7 @@ const BookDetail = (props) => {
   };
 
   return (
-    <div>
+    <div className="bookContainer">
       <p>
         Book Title:
         {title}

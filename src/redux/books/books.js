@@ -23,7 +23,8 @@ export const getBooksList = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(api);
-      return [...response.data];
+      const books = await response.data;
+      return books;
     } catch (error) {
       return error.message;
     }
