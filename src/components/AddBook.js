@@ -34,7 +34,8 @@ const AddBook = () => {
   };
 
   return (
-    <div>
+    <div className="bookForm">
+      <h3 className="addBook">ADD BOOK</h3>
       <form>
         <input type="text" placeholder="Add Book Title" value={title} onChange={handleBookTitle} />
         <input type="text" placeholder="Add Book Author" value={author} onChange={handleBookAuthor} />

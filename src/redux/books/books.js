@@ -6,30 +6,11 @@ const ADD = 'bookStore/books/ADD';
 const REMOVE = 'bookStore/books/REMOVE';
 const FETCH_BOOKS = 'bookStore/books/FETCH_BOOKS';
 
-const api = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books/';
+const api = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/lHmx2UhvNK6tY34Detmr/books/';
 
 // Initial State
 const initialState = {
-  books: [
-    {
-      item_id: 'item1',
-      title: 'Where We End & Begin',
-      author: 'Jane Igharo',
-      category: 'Adventure',
-    },
-    {
-      item_id: 'item2',
-      title: 'Strength In Numbers',
-      author: 'Elliot',
-      category: 'Life Story',
-    },
-    {
-      item_id: 'item3',
-      title: 'Watch And Learn',
-      author: 'Mitch',
-      category: 'Motivational',
-    },
-  ],
+  books: [],
 };
 
 export const getBooksList = createAsyncThunk(
