@@ -50,7 +50,9 @@ const BookDetail = (props) => {
       </div>
       <div className="vl" />
       <button type="button" className="update">UPDATE PROGRESS</button>
+      <h2 className="percentage">64%</h2>
       <h3 className="complete">Completed</h3>
+      <h2 className="chapter2">Chapter 1: In The Begining</h2>
       <h3 className="chapter">CURRENT CHAPTER</h3>
     </div>
   );

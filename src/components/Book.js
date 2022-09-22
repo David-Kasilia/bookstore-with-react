@@ -18,6 +18,7 @@ const Book = () => {
   return (
     <div>
       {books.map((book) => (<BookDetail key={uuid()} id={book.item_id} title={book.title} author={book.author} category={book.category} />))}
+      <hr />
       <AddBook />
     </div>
   );

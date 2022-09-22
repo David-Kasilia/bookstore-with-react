@@ -51,10 +51,9 @@ header {
 }
 
 input {
-  width: 20.5rem;
-  height: 1.813rem;
-  margin: 1.188rem 2.125rem 0 0;
-  padding: 0.813rem 35.688rem 0.813rem 1.063rem;
+  width: 20rem;
+  height: 2.813rem;
+  margin-bottom: 3rem;
   border-radius: 4px;
   border: solid 1px #e8e8e8;
   background-color: #fff;
@@ -63,9 +62,6 @@ input {
 .btn {
   width: 11.5rem;
   height: 2.813rem;
-  position: relative;
-  top: -3rem;
-  left: 65rem;
   border-color: #0290ff;
   padding: 0.801rem 1.188rem 0.886rem 1.375rem;
   border-radius: 3px;
@@ -201,7 +197,7 @@ input {
 .vl {
   width: 0.025rem;
   height: 5.375rem;
-  border: solid 1px #696464;
+  border: solid 1px gray;
   position: relative;
   top: -17rem;
   right: 0;
@@ -211,12 +207,28 @@ input {
 
 .chapter {
   position: relative;
-  top: -28.5rem;
+  top: -37.5rem;
   right: 0;
   left: 60rem;
   bottom: 0;
   font-family: 'Roboto Slab', serif;
-  font-size: 0.813rem;
+  font-size: 0.913rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: gray;
+}
+
+.chapter2 {
+  position: relative;
+  top: -32.5rem;
+  right: 0;
+  left: 60rem;
+  bottom: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.113rem;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -227,18 +239,34 @@ input {
 
 .complete {
   position: relative;
-  top: -20rem;
+  top: -27rem;
   right: 0;
   left: 45rem;
   bottom: 0;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.875rem;
+  font-size: 1.175rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   color: gray;
+}
+
+.percentage {
+  position: relative;
+  top: -26rem;
+  right: 0;
+  left: 45rem;
+  bottom: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.275rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: black;
 }
 
 .addBook {
@@ -255,6 +283,14 @@ input {
 
 form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-left: 6.5rem;
+  gap: 2.5rem;
+}
+
+hr {
+  margin-top: 2rem;
+  margin-left: 6.5rem;
+  width: 90%;
+  color: gray;
 }
