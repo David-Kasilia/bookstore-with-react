@@ -1,7 +1,5 @@
 /* eslint-disable import/no-named-as-default */
-import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
-import thunk from 'redux-thunk';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import bookReducer from './books/books';
 import checkStatus from './categories/categories';
 
@@ -10,6 +8,6 @@ const allReducers = combineReducers({
   status: checkStatus,
 });
 
-const store = configureStore({ reducer: allReducers }, applyMiddleware(thunk));
+const store = configureStore({ reducer: allReducers });
 
 export default store;

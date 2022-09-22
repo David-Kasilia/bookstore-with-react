@@ -1,109 +1,107 @@
-/* eslint-disable arrow-body-style */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-unused-expressions */
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-const api = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books';
+/* eslint-disable no-console */
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // Actions
 const ADD = 'bookStore/books/ADD';
 const REMOVE = 'bookStore/books/REMOVE';
 const FETCH_BOOKS = 'bookStore/books/FETCH_BOOKS';
 
+const api = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ZPIIXJcS0uJKHlhqGIyi/books/';
+
 // Initial State
-export const initialState = {
-  books: [],
-  status: 'idle',
-  error: null,
+const initialState = {
+  books: [
+    {
+      item_id: 'item1',
+      title: 'Where We End & Begin',
+      author: 'Jane Igharo',
+      category: 'Adventure',
+    },
+    {
+      item_id: 'item2',
+      title: 'Strength In Numbers',
+      author: 'Elliot',
+      category: 'Life Story',
+    },
+    {
+      item_id: 'item3',
+      title: 'Watch And Learn',
+      author: 'Mitch',
+      category: 'Motivational',
+    },
+  ],
 };
 
 export const getBooksList = createAsyncThunk(
-  'books/getBooksList',
-  async () => {
-    try {
-      const response = await axios.get(api);
-      const books = await response.data;
-      return books;
-    } catch (error) {
-      return error.message;
-    }
+  FETCH_BOOKS,
+  async (args, { dispatch }) => {
+    const response = await fetch(api);
+    const data = await response.json();
+    const books = Object.keys(data).map((key) => {
+      const book = data[key][0];
+      return {
+        item_id: key,
+        ...book,
+      };
+    });
+    dispatch({
+      type: FETCH_BOOKS,
+      payload: books,
+    });
+    return books;
   },
 );
 
-export const createNewBook = createAsyncThunk(
-  'books/createNewBook',
-  async (initialBook) => {
-    try {
-      const response = await axios.post(api, initialBook);
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
-  },
-);
+export const createNewBook = (book) => async (dispatch) => {
+  try {
+    await fetch(api, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(book),
+    });
+    dispatch({
+      type: ADD,
+    });
+    dispatch(getBooksList());
+  } catch (error) {
+    console.log('Book Not Added', error);
+  }
+};
 
-const booksSlice = createSlice({
-  name: 'books',
-  initialState,
-  extraReducers(builder) {
-    builder.addCase(getBooksList.pending, (state) => {
-      state.status = 'Loading';
+export const removeBookList = (id) => (dispatch) => {
+  fetch(`${api}${id}`, {
+    method: 'DELETE',
+  })
+    .then(() => dispatch({
+      type: REMOVE,
+      payload: id,
+    }))
+    .then((data) => {
+      console.log('Remove Book From List', data);
     });
-    builder.addCase(getBooksList.fulfilled, (state, action) => {
-      state.status = 'Success';
-      state.books = action.payload;
-    });
-    builder.addCase(getBooksList.rejected, (state, action) => {
-      state.status = 'Failed';
-      state.error = action.error.message;
-    });
-    builder.addCase(createNewBook.fulfilled, (state, action) => {
-      state.books.push(action.payload);
-    });
-  },
-});
+};
 
 // Reducer Function
 
-export const bookReducer = (state = initialState, action) => {
+const bookReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_BOOKS:
-      return [
+      return {
         ...state,
-      ];
+        books: action.payload,
+      };
 
     case ADD:
-      return [...this.state.first, action.payload];
+      return {
+        ...state,
+      };
 
     case REMOVE:
-      return state.filter((book) => book.item_id !== action.payload);
+      return { books: state.books.filter((book) => book.item_id !== action.payload) };
 
     default:
       return state;
   }
 };
 
-// Fetch Books action From BookStore API
-export const fetchBooks = () => ({
-  type: 'FETCH_BOOKS',
-});
-
-// Add A Book action
-
-export const addBook = (book) => ({
-  type: 'ADD',
-  payload: book,
-});
-
-// Remove a book action
-
-export const removeBook = (index) => ({
-  type: 'REMOVE',
-  payload: index,
-});
-
-export const getBookStatus = (state) => state.books.status;
-export const getBookError = (state) => state.books.error;
-
-export default booksSlice.reducer;
+export default bookReducer;
